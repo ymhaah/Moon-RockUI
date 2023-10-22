@@ -1,0 +1,35 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "ESNext",
+        "useDefineForClassFields": true,
+        "lib": ["dom", "esnext"],
+        "declaration": true,
+        "skipLibCheck": true,
+        "emitDeclarationOnly": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "downlevelIteration": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "paths": {
+            "@components/*": ["./src/components/*"]
+        }
+    },
+    "include": ["src"],
+    "exclude": ["**/node_modules", "**/dist", "test"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}
