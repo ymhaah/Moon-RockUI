@@ -1,0 +1,101 @@
+@function strip-unit($number) {
+	@if type-of($number) == "number" and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+	@return $number;
+}
+
+@function toRem($number) {
+	@return calc(strip-unit(calc($number / 16)) * 1rem);
+}
+
+@function toEm($number) {
+	@return calc(strip-unit(calc($number / 16)) * 1em);
+}
+
+@function ClampCalc($minSize, $maxSize, $minWidth: 480px, $maxWidth: 1440px) {
+	// convert to rem
+	$minSize: strip-unit(calc($minSize / 16));
+	$maxSize: strip-unit(calc($maxSize / 16));
+	$minWidth: strip-unit(calc($minWidth / 16));
+	$maxWidth: strip-unit(calc($maxWidth / 16));
+
+	// do calculations
+	$slope: calc(calc($maxSize - $minSize) / calc($maxWidth - $minWidth));
+	$yAxisIntersection: -$minWidth * $slope + $minSize;
+	$preferredValue: calc(#{$yAxisIntersection * 1rem} + #{$slope * 100vw});
+	// output as rem
+	$minSize: $minSize * 1rem;
+	$maxSize: $maxSize * 1rem;
+
+	$Font: clamp($minSize, $preferredValue, $maxSize);
+	@return $Font;
+}
+
+@mixin fluid-type(
+	$min-font-size,
+	$max-font-size,
+	$min-vw: 480px,
+	$max-vw: 1440px
+) {
+	$u1: unit($min-vw);
+	$u2: unit($max-vw);
+	$u3: unit($min-font-size);
+	$u4: unit($max-font-size);
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+		& {
+			font-size: $min-font-size;
+			@media screen and (min-width: $min-vw) {
+				font-size: calc(
+					#{$min-font-size} + #{strip-unit(
+							$max-font-size - $min-font-size
+						)} *
+						(
+							(100vw - #{$min-vw}) / #{strip-unit(
+									$max-vw - $min-vw
+								)}
+						)
+				);
+			}
+			@media screen and (min-width: $max-vw) {
+				font-size: $max-font-size;
+			}
+		}
+	}
+}
+@mixin fluid-type-var(
+	$min-font-size,
+	$max-font-size,
+	$inti: 100,
+	$min-vw: 480px,
+	$max-vw: 1440px
+) {
+	$u1: unit($min-vw);
+	$u2: unit($max-vw);
+	$u3: unit($min-font-size);
+	$u4: unit($max-font-size);
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+		& {
+			--fs-#{$inti}: #{$min-font-size};
+
+			@media screen and (min-width: $min-vw) {
+				--fs-#{$inti}: calc(
+					#{$min-font-size} + #{strip-unit(
+							$max-font-size - $min-font-size
+						)} *
+						(
+							(100vw - #{$min-vw}) / #{strip-unit(
+									$max-vw - $min-vw
+								)}
+						)
+				);
+			}
+
+			@media screen and (min-width: $max-vw) {
+				--fs-#{$inti}: #{$max-font-size};
+			}
+		}
+	}
+}

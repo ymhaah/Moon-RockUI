@@ -1,0 +1,153 @@
+@use "../global/index" as *;
+@use "../util/index" as *;
+
+// @include flex(r, c, c);
+// @include flexForPhon(cr,2);
+// @include grid(2, 2, fr, 1rem)
+
+// .circle {
+// --circle-size: ;
+// --sons-size: ;
+// --circle-radius: calc(calc(var(--circle-size) - var(--sons-size)) / 2);
+// --son-deg: calc(360deg / #{$son-num});
+// width: var(--circle-size);
+// height: var(--circle-size);
+// position: relative;
+// @for $inti from 1 to $son-num + 1 {
+//     & :nth-child(#{$inti}) {
+//         --deg: calc(var(--son-deg) * #{$inti});
+//     }
+// }
+// span {
+//     --X: calc(
+//         var(--circle-radius) + (var(--circle-radius) * cos(var(--deg)))
+//     );
+//     --Y: calc(
+//         var(--circle-radius) + (var(--circle-radius) * sin(var(--deg)))
+//     );
+//     width: var(--sons-size);
+//     height: var(--sons-size);
+//     position: absolute;
+//     top: var(--Y);
+//     left: var(--X);
+//     margin: 0;
+// }
+// }
+
+.loader {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex(r, c, c);
+    background-color: var(--main-light-clr);
+    z-index: 1000;
+    .loading-spinner {
+        --size: 15vw;
+        width: var(--size);
+        height: var(--size);
+        position: relative;
+        filter: blur(3px) contrast(10);
+        .absolute {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .small-dots.circle {
+            --circle-size: var(--size);
+            --sons-size: 12%;
+            $son-num: 9;
+            --circle-radius: calc(
+                calc(var(--circle-size) - var(--sons-size)) / 2
+            );
+            --son-deg: calc(360deg / #{$son-num});
+            width: var(--circle-size);
+            height: var(--circle-size);
+            position: relative;
+            @for $inti from 1 to $son-num + 1 {
+                & :nth-child(#{$inti}) {
+                    --deg: calc(var(--son-deg) * #{$inti});
+                }
+            }
+            span {
+                --X: calc(
+                    var(--circle-radius) +
+                        (var(--circle-radius) * cos(var(--deg)))
+                );
+                --Y: calc(
+                    var(--circle-radius) +
+                        (var(--circle-radius) * sin(var(--deg)))
+                );
+                width: var(--sons-size);
+                height: var(--sons-size);
+                position: absolute;
+                top: var(--Y);
+                left: var(--X);
+                margin: 0;
+            }
+        }
+        .big-dots.circle {
+            --circle-size: var(--size);
+            --sons-size: 18%;
+            $son-num: 3;
+            --circle-radius: calc(
+                calc(var(--circle-size) - var(--sons-size)) / 2
+            );
+            --son-deg: calc(360deg / #{$son-num});
+            width: var(--circle-size);
+            height: var(--circle-size);
+            position: relative;
+            @for $inti from 1 to $son-num + 1 {
+                & :nth-child(#{$inti}) {
+                    --deg: calc(var(--son-deg) * #{$inti});
+                }
+            }
+            span {
+                --X: calc(
+                    var(--circle-radius) +
+                        (var(--circle-radius) * cos(var(--deg)))
+                );
+                --Y: calc(
+                    var(--circle-radius) +
+                        (var(--circle-radius) * sin(var(--deg)))
+                );
+                width: var(--sons-size);
+                height: var(--sons-size);
+                position: absolute;
+                top: var(--Y);
+                left: var(--X);
+                margin: 0;
+            }
+        }
+        .spinner {
+            animation-name: spin;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            transform-origin: 50% 50%;
+            mix-blend-mode: multiply;
+            span {
+                background-color: var(--main-dark-clr);
+                border-radius: 50%;
+            }
+        }
+        .small-dots {
+            animation-duration: 7s;
+            background-color: var(--main-light-clr);
+        }
+        .big-dots {
+            animation-duration: 4s;
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

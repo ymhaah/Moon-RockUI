@@ -1,0 +1,51 @@
+@use "../global/index" as *;
+@use "../util/index" as *;
+
+// @include flex(r, c, c);
+// @include flexForPhon(cr,2);
+// @include grid(2, 2, fr, 1rem)
+
+footer {
+	width: 100vw;
+	.Container {
+		form {
+			// @include flex(r, c, c);
+			.inputFiled:focus-within {
+			}
+		}
+	}
+	.scroll-Top {
+		width: 5rem;
+		height: 5rem;
+		border-radius: 50%;
+		border: 3px solid rgb(255, 20, 81);
+		background-color: rgb(255, 20, 81);
+		color: #fff0e5;
+		cursor: pointer;
+		line-height: 4.5rem;
+		font-size: 2rem;
+		text-align: center;
+		p {
+			margin: auto;
+		}
+	}
+	.scroll-Top:hover {
+		background-color: rgb(255, 20, 81);
+		color: #fff0e5;
+	}
+	.mine {
+		width: 100%;
+		text-align: center;
+		font-size: 1.5rem;
+
+		p {
+			margin: 0;
+			color: #fff0e5;
+			a {
+				text-decoration: underline;
+				color: rgb(255, 20, 81);
+				font-weight: bold;
+			}
+		}
+	}
+}

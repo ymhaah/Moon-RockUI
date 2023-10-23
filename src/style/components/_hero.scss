@@ -1,0 +1,24 @@
+@use "../global/index" as *;
+@use "../util/index" as *;
+
+// @include flex(r, c, c);
+// @include flexForPhon(cr,2);
+// @include grid(2, 2, fr, 1rem)
+
+[aria-labelledby="hero title"] {
+	width: 100vw;
+	height: calc(100vh - var(--Header-hight));
+	.Container {
+		--container-width: 80%;
+		.Hero {
+			width: 100%;
+			height: 100%;
+			@include flexForPhon(c, 2);
+
+			.Hero-Text {
+			}
+			.Hero-Star {
+			}
+		}
+	}
+}

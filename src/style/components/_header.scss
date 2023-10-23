@@ -1,0 +1,80 @@
+@use "../global/index" as *;
+@use "../util/index" as *;
+
+// @include flex(r, c, c);
+// @include flexForPhon(cr,2);
+// @include grid(2, 2, fr, 1rem)
+
+:root {
+	--Header-hight: 5rem;
+	--Header-Nav-width: 30em;
+	--Header-icon-hight: 5em;
+}
+
+.main-header {
+	width: 100vw;
+	max-height: var(--Header-hight);
+	z-index: 100;
+	position: relative;
+	padding: 0.1rem 0;
+	.Container {
+		--container-width: 60%;
+	}
+	.header__Container {
+		@include flex(r, sb, c);
+		.header__Logo {
+			width: 100%;
+			@include flex(n, c, c);
+			a {
+				cursor: pointer;
+				white-space: nowrap;
+				font-size: var(--fs-s);
+				color: var(--txt-clr);
+				img {
+					width: var(--fs-500);
+				}
+			}
+		}
+		.mobile-nav-toggle {
+			--icon-size: var(--fs-300);
+			cursor: pointer;
+			display: none;
+			position: absolute;
+			right: 5%;
+			border: 0;
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			user-select: none;
+			width: var(--icon-size);
+			height: var(--icon-size);
+			z-index: 1000;
+		}
+		.header__main-navigation {
+			font-size: var(--fs-s);
+			width: var(--Header-Nav-width);
+			@include flex(r, n, c);
+			ul {
+				width: 100%;
+				@include flex(r, sb, c);
+				li {
+					a {
+						font-size: var(--fs-s);
+						color: var(--txt-clr);
+						cursor: pointer;
+					}
+					// a:hover {
+					// }
+				}
+				// li a[date-selected="false"]:hover::after,
+				// li a[date-selected="false"]:focus-visible::after {
+
+				// }
+				// li a[date-selected="true"]::after {
+
+				// }
+			}
+		}
+	}
+}

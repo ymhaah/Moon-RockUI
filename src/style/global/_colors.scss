@@ -1,0 +1,120 @@
+:root {
+    // main utility
+    // --clr-primary: ;
+    // --clr-secondary: ;
+    // --clr-accent: ;
+    // --clr-dark: ;
+    // --clr-light: ;
+    // // gradient utility
+    // --clr-100: ;
+    // --clr-200: ;
+    // --clr-300: ;
+    // --clr-400: ;
+    // --clr-500: ;
+    // --clr-600: ;
+    // --clr-700: ;
+    // --clr-800: ;
+    // --clr-900: ;
+    // // colors utility
+    // #### (red) ###
+    --clr-red-400: hsl(345, 88%, 66%);
+    --clr-red-700: hsl(0, 94%, 66%);
+    --clr-red-800: #fd0d4d;
+    // #### (blue) ###
+    --clr-blue-300: hsl(209, 91%, 65%);
+    --clr-blue-400: hsl(209, 98%, 56%);
+    --clr-blue-500: #0d6dfd;
+
+    --clr-pink: hsl(330, 67%, 52%);
+    --clr-purple: hsl(261, 51%, 51%);
+    --clr-green: hsl(152, 69%, 31%);
+    --clr-yellow: hsl(45, 100%, 51%);
+    --clr-orange: hsl(27, 98%, 54%);
+    --clr-gray-600: hsl(210, 11%, 15%);
+    --clr-gray-300: hsl(210, 11%, 71%);
+    --clr-black: hsl(0, 0%, 0%);
+    --clr-white: hsl(0, 0%, 100%);
+    // // mix
+    // --clr-blue-500: ;
+    // --clr-secondary-300: ;
+
+    // * alpha
+    --clr-alpha-white: 0 0% 100%;
+    --clr-alpha-black: 0 0% 0%;
+
+    // light
+    --bg-clr-light: var(--clr-white);
+    --txt-clr-light: var(--clr-black);
+    --accent-clr-light: var(--clr-blue-400);
+    --secondary-clr-light: var(--clr-gray-300);
+
+    // dark
+    --bg-clr-dark: var(--clr-gray-600);
+    --txt-clr-dark: var(--clr-white);
+    --accent-clr-dark: var(--clr-blue-500);
+    --secondary-clr-dark: var(--clr-gray-300);
+
+    //! main
+    --bg-clr: var(--bg-clr-light);
+    --txt-clr: var(--txt-clr-light);
+    --accent-clr: var(--accent-clr-light);
+    --secondary-clr: var(--secondary-clr-light);
+    color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+    // if the browther is on dark mode the dark mode work automatically
+    :root {
+        --bg-clr: var(--bg-clr-dark);
+        --txt-clr: var(--txt-clr-dark);
+        --accent-clr: var(--accent-clr-dark);
+        --secondary-clr: var(--secondary-clr-dark);
+        color-scheme: dark;
+    }
+}
+
+@media (forced-colors: active) {
+}
+
+// :root {
+// 	--_hue: 220;
+
+// 	--bg--light: var(--_hue) 30% 97%;
+// 	--txt--light: var(--_hue) 40% 5%;
+// 	--accent--light: var(--_hue) 55% 50%;
+// 	--secondary--light: calc(var(--_hue) + 190) 30% 57%;
+
+// 	--bg--dark: var(--_hue) 20% 7%;
+// 	--txt--dark: var(--_hue) 30% 88%;
+// 	--accent--dark: var(--_hue) 45% 47%;
+// 	--secondary--dark: calc(var(--_hue) + 190) 20% 47%;
+
+// 	--bg: var(--bg--light);
+// 	--txt: var(--txt--light);
+// 	--accent: var(--accent--light);
+// 	--secondary: var(--secondary--light);
+// }
+
+// .radial-gradient {
+// 	--grad2-deg: 100%;
+// 	--grad1-deg: 50%;
+// 	background: var(--bg-grad1);
+// 	background: radial-gradient(
+// 		circle,
+// 		var(--bg-grad1) var(--grad1-deg, 0%),
+// 		var(--bg-grad2) var(--grad2-deg, 100%)
+// 	);
+// }
+
+// .linear-gradient {
+// 	--deg: 180deg;
+// 	--grad2-deg: 100%;
+// 	--grad1-deg: 0%;
+// 	--grad2-clr: ;
+// 	--grad1-clr: ;
+// 	background: var(--grad1-clr);
+// 	background: linear-gradient(
+// 		var(--deg),
+// 		var(--grad1-clr) var(--grad1-deg),
+// 		var(--grad2-clr) var(--grad2-deg)
+// 	);
+// }
