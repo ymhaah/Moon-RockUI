@@ -13,11 +13,31 @@
 	},
 	"keywords": [
 		"react",
+		"react-aria",
 		"component",
+		"button",
+		"image",
+		"text",
+		"loader",
+		"popover",
+		"modal",
+		"tooltip",
 		"library",
-		"Moon RockUi",
+		"Moon Rock UI",
+		"moon",
+		"rock",
 		"ui",
-		"moon"
+		"design",
+		"development",
+		"frontend",
+		"web",
+		"user interface",
+		"accessibility",
+		"performance",
+		"responsive",
+		"mobile",
+		"desktop",
+		"open source"
 	],
 	"description": "A collection of React components for building beautiful and user-friendly interfaces.",
 	"pnpm": {
@@ -35,7 +55,7 @@
 	"files": [
 		"/dist/**/**"
 	],
-	"main": "dist/main.js",
+	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"sideEffects": [
 		"**/*.css"

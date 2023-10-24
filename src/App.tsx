@@ -1,9 +1,15 @@
 // import { useState } from 'react'
 
-import "./App.css";
+import Button from "./components/uiComponents/Button.jsx";
+
+// import "./App.css";
 
 function App() {
-	return <h1>test</h1>;
+	return (
+		<div>
+			<Button>test</Button>
+		</div>
+	);
 }
 
 export default App;

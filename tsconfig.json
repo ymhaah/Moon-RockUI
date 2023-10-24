@@ -26,7 +26,8 @@
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
 		"paths": {
-			"@components/*": ["./src/components/*"]
+			"@components/*": ["./src/components/*"],
+			"@button/*": ["./src/components/Button/*"]
 		}
 	},
 	"include": ["src", "lib"],
