@@ -10,15 +10,15 @@ export default defineConfig({
 		dts({
 			insertTypesEntry: true,
 			copyDtsFiles: true,
-			include: ["lib"],
 		}),
 	],
+
 	build: {
 		minify: false,
 		manifest: true,
 		lib: {
-			entry: resolve(__dirname, "lib/index.ts"),
-			formats: ["es"],
+			entry: resolve(__dirname, "packages/index.ts"),
+			name: "moon-rockUi",
 		},
 		rollupOptions: {
 			external: ["react", "react-dom", "react/jsx-runtime", "react-aria"],

@@ -1,0 +1,65 @@
+{
+	"name": "moon-rock-ui/button",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "0.0.1",
+	"license": "MIT",
+	"author": {
+		"name": "Youssef Hefnawy",
+		"email": "ymhaah250@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ymhaah/Moon-RockUI",
+		"directory": "packages/components/button"
+	},
+	"bugs": {
+		"url": "https://github.com/ymhaah/Moon-RockUI/issues"
+	},
+	"keywords": [
+		"button"
+	],
+	"description": "button",
+	"pnpm": {
+		"overrides": {
+			"react": "^18.2.0",
+			"react-dom": "^18.2.0"
+		}
+	},
+	"engines": {
+		"node": ">=16.x",
+		"pnpm": ">=8.x"
+	},
+	"packageManager": "pnpm@8.8.0",
+	"type": "module",
+	"main": "src/index.ts",
+	"types": "src/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-aria": "^3.29.1",
+		"react-dom": "^18.2.0"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"react": "^18.2.0",
+		"@types/react": "^18.2.15",
+		"sass": "^1.69.4"
+	}
+}

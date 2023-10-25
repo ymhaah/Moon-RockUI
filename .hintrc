@@ -1,28 +1,29 @@
 {
-    "extends": ["development"],
-    "hints": {
-        "detect-css-reflows/composite": "off",
-        "detect-css-reflows/layout": "off",
-        "detect-css-reflows/paint": "off",
-        "compat-api/html": [
-            "default",
-            {
-                "ignore": ["img[loading]"]
-            }
-        ],
-        "compat-api/css": [
-            "default",
-            {
-                "ignore": [
-                    "user-select",
-                    "appearance",
-                    "overscroll-behavior",
-                    "scroll-behavior",
-                    "backface-visibility",
-                    "aspect-ratio"
-                ]
-            }
-        ],
-        "no-inline-styles": "off"
-    }
+	"extends": ["development"],
+	"hints": {
+		"detect-css-reflows/composite": "off",
+		"detect-css-reflows/layout": "off",
+		"detect-css-reflows/paint": "off",
+		"compilerOptions/moduleResolution": "off",
+		"compat-api/html": [
+			"default",
+			{
+				"ignore": ["img[loading]"]
+			}
+		],
+		"compat-api/css": [
+			"default",
+			{
+				"ignore": [
+					"user-select",
+					"appearance",
+					"overscroll-behavior",
+					"scroll-behavior",
+					"backface-visibility",
+					"aspect-ratio"
+				]
+			}
+		],
+		"no-inline-styles": "off"
+	}
 }
