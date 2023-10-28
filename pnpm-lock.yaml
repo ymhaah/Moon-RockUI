@@ -62,6 +62,9 @@ devDependencies:
   eslint:
     specifier: ^8.45.0
     version: 8.52.0
+  eslint-plugin-detect-bad-words:
+    specifier: ^1.0.7
+    version: 1.0.7
   eslint-plugin-react-hooks:
     specifier: ^4.6.0
     version: 4.6.0(eslint@8.52.0)
@@ -5654,6 +5657,10 @@ packages:
       - supports-color
     dev: true
 
+  /badwords@1.0.0:
+    resolution: {integrity: sha512-lvRlf54xyNuIeYHHdNYlLQNVc2l5v91v/3mD92fny4GUXXkdaiTImqSCFRBiPBtOASS7TMZjzkMq0cYsPtAbxA==}
+    dev: true
+
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
@@ -6380,6 +6387,14 @@ packages:
       esutils: 2.0.3
     optionalDependencies:
       source-map: 0.6.1
+    dev: true
+
+  /eslint-plugin-detect-bad-words@1.0.7:
+    resolution: {integrity: sha512-wuLNf+VoEe60VcR9GIvLicHB5hqKBiQaRNr7gwsRGxIprSZunawpwwWFjO/89YsshXrC+icx5qdqoWoMYrBjLw==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      badwords: 1.0.0
+      requireindex: 1.1.0
     dev: true
 
   /eslint-plugin-react-hooks@4.6.0(eslint@8.52.0):
@@ -8788,6 +8803,11 @@ packages:
       github-slugger: 1.5.0
       mdast-util-to-string: 1.1.0
       unist-util-visit: 2.0.3
+    dev: true
+
+  /requireindex@1.1.0:
+    resolution: {integrity: sha512-LBnkqsDE7BZKvqylbmn7lTIVdpx4K/QCduRATpO5R+wtPmky/a8pN1bO2D6wXppn1497AJF9mNjqAXr6bdl9jg==}
+    engines: {node: '>=0.10.5'}
     dev: true
 
   /requireindex@1.2.0:

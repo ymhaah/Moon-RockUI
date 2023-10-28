@@ -2,20 +2,21 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "ESNext",
-		"useDefineForClassFields": true,
+		"module": "esnext",
 		"lib": ["dom", "esnext"],
+		"useDefineForClassFields": true,
 		"declaration": true,
 		"skipLibCheck": true,
 		"emitDeclarationOnly": true,
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		"downlevelIteration": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"sourceMap": true,
 		"esModuleInterop": true,
 		"importHelpers": true,
+		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"strictNullChecks": true,
 		"allowSyntheticDefaultImports": true,
@@ -25,12 +26,14 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
+		"baseUrl": ".",
 		"paths": {
-			"@components/*": ["./src/components/*"],
-			"@button/*": ["./src/components/Button/*"]
-		}
+			"@components/*": ["./packages/components/*"],
+			"@button/*": ["./packages/components/Button/*"]
+		},
+		"types": ["react", "react-dom"]
 	},
-	"include": ["src"],
-	"exclude": ["**/node_modules", "**/dist"],
+	"include": ["packages/**/*"],
+	"exclude": ["node_modules", "dist"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

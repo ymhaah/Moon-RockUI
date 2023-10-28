@@ -1,5 +1,6 @@
 {
 	"extends": ["development"],
+	"ignorePatterns": ["node_modules/", "storybook-static/", "dist/"],
 	"hints": {
 		"detect-css-reflows/composite": "off",
 		"detect-css-reflows/layout": "off",
