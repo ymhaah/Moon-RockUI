@@ -4,8 +4,8 @@ on:
     push:
         branches:
             - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+    release:
+        types: [created]
 
 jobs:
     build:
@@ -21,10 +21,10 @@ jobs:
                   version: 8.x
 
             - name: Set up Node.js
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: 16.x
-                  cache: "pnpm"
+                  registry-url: https://npm.pkg.github.com/
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -43,3 +43,20 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    publish-gpr:
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            packages: write
+            contents: read
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  registry-url: https://npm.pkg.github.com/
+            - run: npm ci
+            - run: npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

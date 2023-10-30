@@ -2,6 +2,7 @@
 	"name": "moon-rock-ui",
 	"private": false,
 	"publishConfig": {
+		"@ymhaah:registry": "https://npm.pkg.github.com",
 		"access": "public"
 	},
 	"version": "0.0.3",
