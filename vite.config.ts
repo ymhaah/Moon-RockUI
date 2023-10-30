@@ -5,41 +5,41 @@ import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        react(),
-        dts({
-            insertTypesEntry: true,
-            copyDtsFiles: true,
-        }),
-    ],
+	plugins: [
+		react(),
+		dts({
+			insertTypesEntry: true,
+			copyDtsFiles: true,
+		}),
+	],
 
-    build: {
-        outDir: "dist",
-        minify: false,
-        manifest: true,
-        lib: {
-            entry: resolve(__dirname, "packages/index.ts"),
-            name: "moon-rockUi",
-        },
-        rollupOptions: {
-            external: ["react", "react-dom", "react/jsx-runtime", "react-aria"],
-            output: {
-                globals: {
-                    react: "React",
-                    "react-dom": "ReactDOM",
-                    "react-aria": "react-aria",
-                },
-                entryFileNames: "[name].js",
-                chunkFileNames: "[name].js",
-                assetFileNames: "[name].[ext]",
-            },
-        },
-    },
-    // resolve: {
-    // 	alias: {
-    // 	  // Add custom aliases as needed
-    // 	  '@components': '/src/components',
-    // 	},
-    // 	extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    //   }
+	build: {
+		outDir: "dist",
+		minify: false,
+		manifest: true,
+		lib: {
+			entry: resolve(__dirname, "packages/index.ts"),
+			name: "moon-rockUi",
+		},
+		rollupOptions: {
+			external: ["react", "react-dom", "react/jsx-runtime", "react-aria"],
+			output: {
+				globals: {
+					react: "React",
+					"react-dom": "ReactDOM",
+					"react-aria": "react-aria",
+				},
+				entryFileNames: "[name].js",
+				chunkFileNames: "[name].js",
+				assetFileNames: "[name].[ext]",
+			},
+		},
+	},
+	// resolve: {
+	// 	alias: {
+	// 	  // Add custom aliases as needed
+	// 	  '@components': '/src/components',
+	// 	},
+	// 	extensions: ['.js', '.jsx', '.ts', '.tsx'],
+	//   }
 });

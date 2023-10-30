@@ -7,7 +7,7 @@
 		"useDefineForClassFields": true,
 		"declaration": true,
 		"skipLibCheck": true,
-		"emitDeclarationOnly": true,
+		// "emitDeclarationOnly": true,
 		"moduleResolution": "node",
 		"downlevelIteration": true,
 		"resolveJsonModule": true,
@@ -26,6 +26,7 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
+		"noEmit": true,
 		"baseUrl": ".",
 		"paths": {
 			"@components/*": ["./packages/components/*"],

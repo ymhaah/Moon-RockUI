@@ -1,5 +1,5 @@
 // import {UseButtonProps, useButton} from "./use-button";
-import "./Button.scss";
+// import "./Button.scss";
 
 // export interface ButtonProps extends UseButtonProps {}
 

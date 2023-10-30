@@ -1,0 +1,28 @@
+module.exports = {
+	root: true,
+	env: { browser: true, es2020: true },
+	extends: [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:storybook/recommended",
+		"plugin:storybook/recommended",
+	],
+	parser: "@typescript-eslint/parser",
+	ignorePatterns: ["dist", ".eslintrc.cjs", "storybook-static"],
+	plugins: ["react-refresh", "detect-bad-words"],
+	rules: {
+		"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+		semi: ["warn", "always"],
+		quotes: ["warn", "double"],
+		"prefer-const": "warn",
+		"no-dupe-else-if": "error",
+		"no-await-in-loop": "warn",
+		"no-unused-vars": "warn",
+		"no-duplicate-imports": "error",
+		"detect-bad-words/in-code": "error",
+		"detect-bad-words/in-comment": "error",
+		"no-empty-function": "warn",
+		"no-console": "warn",
+	},
+};
