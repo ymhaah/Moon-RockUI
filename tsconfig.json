@@ -7,7 +7,6 @@
 		"useDefineForClassFields": true,
 		"declaration": true,
 		"skipLibCheck": true,
-		// "emitDeclarationOnly": true,
 		"moduleResolution": "node",
 		"downlevelIteration": true,
 		"resolveJsonModule": true,
@@ -30,7 +29,9 @@
 		"baseUrl": ".",
 		"paths": {
 			"@components/*": ["./packages/components/*"],
-			"@button/*": ["./packages/components/Button/*"]
+			"@button/*": ["./packages/components/Button/src/*"],
+			"@hooks/*": ["./packages/hooks/*"],
+			"@assets/*": ["./packages/assets/*"]
 		},
 		"types": ["react", "react-dom"]
 	},

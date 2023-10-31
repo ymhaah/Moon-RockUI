@@ -1,0 +1,30 @@
+Third-Party Notices
+
+This library includes the following third-party software components:
+
+1. React Aria
+   - Website: https://react-spectrum.adobe.com/react-aria/index.html
+   - License: Apache License 2.0
+
+
+2. React
+   - Website: https://reactjs.org/
+   - License: MIT License
+
+
+3. TypeScript
+   - Website: https://www.typescriptlang.org/
+   - License: Apache License 2.0
+
+4. Sass
+   - Website: https://sass-lang.com/
+   - License: MIT License
+
+5. PNPM
+   - Website: https://pnpm.io/
+   - License: MIT License
+
+6. Vite
+   - Website: https://vitejs.dev/
+   - License: MIT License
+

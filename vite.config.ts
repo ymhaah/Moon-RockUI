@@ -35,11 +35,4 @@ export default defineConfig({
 			},
 		},
 	},
-	// resolve: {
-	// 	alias: {
-	// 	  // Add custom aliases as needed
-	// 	  '@components': '/src/components',
-	// 	},
-	// 	extensions: ['.js', '.jsx', '.ts', '.tsx'],
-	//   }
 });

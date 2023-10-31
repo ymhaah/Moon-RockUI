@@ -34,8 +34,10 @@
 
 // Button.displayName = "NextUI.Button";
 
+// fuck lint
+
 function Button() {
-	return <button type="button">test</button>;
+	return <button type="buttons">test</button>;
 }
 
 export default Button;
