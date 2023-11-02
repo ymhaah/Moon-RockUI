@@ -1,5 +1,5 @@
 // import {UseButtonProps, useButton} from "./use-button";
-// import "./Button.scss";
+import "./Button.scss";
 
 // export interface ButtonProps extends UseButtonProps {}
 
@@ -32,12 +32,12 @@
 //   );
 // });
 
-// Button.displayName = "NextUI.Button";
+type buttonPropsT = {
+	children: React.ReactNode;
+};
 
-// fuck lint
-
-function Button() {
-	return <button type="buttons">test</button>;
+function Button({ children }: buttonPropsT) {
+	return <button type="button">{children}</button>;
 }
 
 export default Button;

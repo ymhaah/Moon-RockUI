@@ -12,7 +12,6 @@ module.exports = {
 	ignorePatterns: ["dist", ".eslintrc.cjs", "storybook-static"],
 	plugins: ["react-refresh", "detect-bad-words"],
 	rules: {
-		"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 		semi: ["warn", "always"],
 		quotes: ["warn", "double"],
 		"prefer-const": "warn",
