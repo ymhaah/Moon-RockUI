@@ -1,10 +1,13 @@
 {
 	"extends": "../../../tsconfig.json",
 	"compilerOptions": {
-		"baseUrl": "."
-		// "paths": {
-
-		// },
+		"outDir": "dist",
+		"allowJs": true,
+		"baseUrl": "./",
+		"paths": {
+			"@button/*": ["./src/Button.tsx"]
+		}
 	},
-	"include": ["src", "index.ts"]
+	"include": ["src", "index.ts"],
+	"exclude": ["node_modules", "dist"]
 }

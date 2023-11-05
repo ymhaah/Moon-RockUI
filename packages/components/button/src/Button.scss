@@ -1,3 +1,77 @@
-button {
-	background-color: red;
+:root {
+	// --button-size:
 }
+
+:where(button.Moon-Rock_Button) {
+	width: fit-content;
+	max-width: min(100%, 100vw);
+	// max-height: ; relative max hight to the size
+
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+	text-align: center;
+
+	/* Font */
+	white-space: nowrap;
+
+	// font-size: ;
+}
+
+:where(.Moon-Rock_Button[type="button"]) {
+	user-select: none;
+	overflow: hidden;
+	text-decoration: none;
+	font: inherit;
+	cursor: pointer;
+	appearance: button;
+}
+
+:where(button.Button--interactive) {
+	text-wrap: balance;
+}
+
+:where(button.Button--multiline) {
+	white-space: normal;
+}
+
+// :where(button.Button--multiline.Button--interactive) {
+
+// }
+
+.Button {
+	// ##### color #####
+	color: #fff; // change the text color
+	background-color: #108a00; // change the button background color
+	border-color: #108a00; // chang the button border color
+	max-height: 3em;
+	padding: max(0.4em, 0.4rem) max(2.2em, 2.2rem);
+}
+
+:where(.Button, .inputFiled) {
+	padding: max(0.4em, 0.4rem) max(2.2em, 2.2rem);
+	font-size: var(--fs-s);
+	background-color: transparent;
+	color: var(--txt-clr);
+	--focus-shadow: inset 0px -0.4rem 0 var(--accent-shadow-clr);
+}
+
+// .Button:has(img, svg) {
+// }
+// .Button:where(:hover, :active):not(:has(img, svg)) {
+// }
+// .Button:has(img, svg):where(:hover, :active) {
+// }
+// .Button:not(:last-child) {
+// 	margin: 0 0 1rem 0;
+// }
+@supports not (width: min-content) {
+	:where(button.Moon-Rock_Button) {
+		width: auto;
+	}
+}
+
+// TODO: a class that ignor the size to make it responseve
+// TODO: make the multi line subort
+// TODO: link the main context wiht the button and make it take a style
