@@ -28,3 +28,6 @@ This library includes the following third-party software components:
    - Website: https://vitejs.dev/
    - License: MIT License
 
+7. storyBook
+	- Website: https://storybook.js.org/
+	- License: MIT License

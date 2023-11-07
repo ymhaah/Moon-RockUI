@@ -27,12 +27,6 @@
 		"noImplicitAny": true,
 		"noEmit": true,
 		"baseUrl": ".",
-		"paths": {
-			"@components/*": ["./packages/components/*"],
-			"@button/*": ["./packages/components/Button/src/*"],
-			"@hooks/*": ["./packages/hooks/*"],
-			"@assets/*": ["./packages/assets/*"]
-		},
 		"types": ["react", "react-dom"]
 	},
 	"include": ["packages/**/*"],
