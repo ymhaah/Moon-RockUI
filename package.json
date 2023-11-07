@@ -53,7 +53,7 @@
 		"desktop",
 		"open source"
 	],
-	"description": "unstyled, fully accessible, variable-based, React UI components",
+	"description": "Unstilled, Accessible, Variable-Based, React TS UI Components.",
 	"pnpm": {
 		"overrides": {
 			"react": "^18.2.0",
