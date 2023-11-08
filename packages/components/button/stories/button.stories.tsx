@@ -30,13 +30,13 @@ export const Interactive_Button: Story = {
 };
 export const Multiline_Button: Story = {
 	args: {
-		children: "this button have some much text that it needs more than on line to fit",
+		children: "this button needs more than on line",
 		multiline: true,
 	},
 	decorators: [
 		(Multiline_ButtonS) => {
 			return (
-				<div style={{ width: "3rem" }}>
+				<div style={{ width: "8rem" }}>
 					<Multiline_ButtonS />
 				</div>
 			);

@@ -116,7 +116,13 @@ select {
 img,
 svg {
 	max-width: 100%;
-	display: block;
+	height: auto;
+	vertical-align: middle;
+	// display: block;
+	font-style: italic;
+	background-repeat: no-repeat;
+	background-size: cover;
+	shape-margin: 0.75rem;
 	user-select: none;
 	object-fit: cover;
 	object-position: center;

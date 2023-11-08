@@ -18,7 +18,6 @@
 
 	// font-size: ;
 }
-
 :where(.Moon-Rock_Button[type="button"]) {
 	user-select: none;
 	overflow: hidden;
@@ -27,15 +26,12 @@
 	cursor: pointer;
 	appearance: button;
 }
-
-:where(button.Button--interactive) {
-	text-wrap: balance;
-}
-
-:where(button.Button--multiline) {
+:where(button.Moon-Rock_Button--multiline) {
 	white-space: normal;
+	// text-wrap: balance;
 }
-
+:where(button.Moon-Rock_Button--interactive) {
+}
 // :where(button.Button--multiline.Button--interactive) {
 
 // }
@@ -66,12 +62,12 @@
 // .Button:not(:last-child) {
 // 	margin: 0 0 1rem 0;
 // }
-@supports not (width: min-content) {
+@supports not (width: fit-content) {
 	:where(button.Moon-Rock_Button) {
 		width: auto;
 	}
 }
 
-// TODO: a class that ignor the size to make it responseve
-// TODO: make the multi line subort
-// TODO: link the main context wiht the button and make it take a style
+// TODO: make the multiline support
+// TODO: a class that ignores the size to make it interactive
+// TODO: link the main context with the button and make it take a style
