@@ -1,22 +1,14 @@
-:root {
-	// --button-size:
-}
-
 :where(button.Moon-Rock_Button) {
 	width: fit-content;
 	max-width: min(100%, 100vw);
-	// max-height: ; relative max hight to the size
-
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	vertical-align: middle;
 	text-align: center;
-
-	/* Font */
 	white-space: nowrap;
-
-	// font-size: ;
+	font-size: var(--Moon-Rock_button-size, 1rem);
+	padding: max(0.25em, 0.25rem);
 }
 :where(.Moon-Rock_Button[type="button"]) {
 	user-select: none;
@@ -37,7 +29,6 @@
 // }
 
 .Button {
-	// ##### color #####
 	color: #fff; // change the text color
 	background-color: #108a00; // change the button background color
 	border-color: #108a00; // chang the button border color
@@ -47,7 +38,6 @@
 
 :where(.Button, .inputFiled) {
 	padding: max(0.4em, 0.4rem) max(2.2em, 2.2rem);
-	font-size: var(--fs-s);
 	background-color: transparent;
 	color: var(--txt-clr);
 	--focus-shadow: inset 0px -0.4rem 0 var(--accent-shadow-clr);
@@ -71,3 +61,4 @@
 // TODO: make the multiline support
 // TODO: a class that ignores the size to make it interactive
 // TODO: link the main context with the button and make it take a style
+// TODO: padding

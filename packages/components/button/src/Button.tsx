@@ -4,9 +4,9 @@ import { ComponentProps, useCallback, useEffect, useRef } from "react";
 // import {useFocusRing,useHover} from "@react-aria";
 // import {chain, mergeProps} from "@react-aria/utils";
 
-import { useButton, AriaButtonProps } from "react-aria";
-
-import useElementProperties from "../../../hooks/useElementProperties.tsx";
+import useElementProperties from "../../../hooks/useElementProperties";
+import useCssVariable from "../../../hooks/useCssVariable.tsx";
+import useFontSize from "../../../hooks/useFontSize";
 
 import "./Button.scss";
 
@@ -42,18 +42,19 @@ import "./Button.scss";
 // });
 
 type nativeButtonPropsT = ComponentProps<"button">;
-type ariaButtonPropsT = AriaButtonProps<"button">;
 
 type customButtonPropsT = {
 	children: React.ReactNode;
+	fontSize?: number;
 	interactive?: boolean;
 	multiline?: boolean;
 };
 
-type buttonPropsT = customButtonPropsT & nativeButtonPropsT & ariaButtonPropsT;
+type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
 
 function Button({
 	children,
+	fontSize = 16,
 	interactive = false,
 	multiline = false,
 	...nativeButtonAttributes
@@ -61,13 +62,12 @@ function Button({
 	type ELEMENT_TYPE = HTMLButtonElement;
 
 	const ButtonRef = useRef<ELEMENT_TYPE>(null);
-	const { buttonProps } = useButton(
-		{
-			...nativeButtonAttributes,
-		},
-		ButtonRef,
-	);
+
 	const buttonSize = useElementProperties<ELEMENT_TYPE>(ButtonRef);
+
+	useCssVariable("--Moon-Rock_button-size", useFontSize(fontSize));
+	// useCssVariable("--Moon-Rock_button-padding-x-ratio", "1.25");
+	// useCssVariable("--Moon-Rock_button-padding-y-ratio", "0.5");
 
 	const isElementPropertiesGood = useCallback(() => {
 		// ? size
@@ -77,8 +77,14 @@ function Button({
 				"we recommend that the button size be at least larger than 30 px for better accessibility",
 			);
 		}
+		if (fontSize < 13) {
+			// eslint-disable-next-line no-console
+			console.warn(
+				"we recommend that the button font size be at least 14 px for better accessibility",
+			);
+		}
 		// TODO : color properties
-	}, [buttonSize]);
+	}, [buttonSize, fontSize]);
 	isElementPropertiesGood();
 
 	useEffect(() => {
@@ -87,11 +93,11 @@ function Button({
 
 	return (
 		<button
-			ref={ButtonRef}
-			{...buttonProps}
 			className={`Moon-Rock_Button ${interactive ? "Moon-Rock_Button--interactive" : ""} ${
 				multiline ? "Moon-Rock_Button--multiline" : ""
 			}`}
+			ref={ButtonRef}
+			{...nativeButtonAttributes}
 		>
 			{children}
 		</button>
@@ -112,8 +118,8 @@ export default Button;
 	-  36px high, min width 88px
 */
 
-// // TODO: React Aria
 // TODO: Focus & hover  state
+// TODO: the defrence button type
 // // TODO: make a fun that send a warring if the size is less than 37px
 // // TODO: make a hook that use this js cool size thing to get any element size
 // TODO: when taking the button size make accept px, rem, em and if he does not paht a value make the defalt px and after all of that make the vinal value with rem

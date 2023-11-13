@@ -8,6 +8,7 @@ const meta: Meta<typeof Button> = {
 	component: Button,
 	args: {
 		children: "button",
+		fontSize: 16,
 		interactive: false,
 		multiline: false,
 	},
