@@ -8,25 +8,21 @@
 	text-align: center;
 	white-space: nowrap;
 	font-size: var(--Moon-Rock_button-size, 1rem);
-	padding: max(0.25em, 0.25rem);
-}
-:where(.Moon-Rock_Button[type="button"]) {
+	padding: 0.4em;
 	user-select: none;
 	overflow: hidden;
 	text-decoration: none;
-	font: inherit;
-	cursor: pointer;
+	text-transform: none;
 	appearance: button;
+	cursor: pointer;
 }
 :where(button.Moon-Rock_Button--multiline) {
 	white-space: normal;
-	// text-wrap: balance;
 }
-:where(button.Moon-Rock_Button--interactive) {
+:where(button.Moon-Rock_Button:disabled, button.Moon-Rock_Button--disabled) {
+	pointer-events: none;
+	cursor: not-allowed;
 }
-// :where(button.Button--multiline.Button--interactive) {
-
-// }
 
 .Button {
 	color: #fff; // change the text color
@@ -58,7 +54,6 @@
 	}
 }
 
-// TODO: make the multiline support
-// TODO: a class that ignores the size to make it interactive
+// // TODO: make the multiline support
 // TODO: link the main context with the button and make it take a style
-// TODO: padding
+// // TODO: padding

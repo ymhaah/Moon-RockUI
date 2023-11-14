@@ -1,8 +1,7 @@
 // import {UseButtonProps, useButton} from "./use-button";
-import { ComponentProps, useCallback, useEffect, useRef } from "react";
+import { ComponentProps, useCallback, useLayoutEffect, useRef } from "react";
 
-// import {useFocusRing,useHover} from "@react-aria";
-// import {chain, mergeProps} from "@react-aria/utils";
+import "wicg-inert";
 
 import useElementProperties from "../../../hooks/useElementProperties";
 import useCssVariable from "../../../hooks/useCssVariable.tsx";
@@ -10,17 +9,12 @@ import useFontSize from "../../../hooks/useFontSize";
 
 import "./Button.scss";
 
-// export interface ButtonProps extends UseButtonProps {}
-
 // const Button = forwardRef<"button", ButtonProps>((props, ref) => {
 //   const {
 //     Component,
 //     domRef,
 //     children,
 //     styles,
-//     spinnerSize,
-//     spinner = <Spinner color="current" size={spinnerSize} />,
-//     spinnerPlacement,
 //     startContent,
 //     endContent,
 //     isLoading,
@@ -32,11 +26,8 @@ import "./Button.scss";
 //   return (
 //     <Component ref={domRef} className={styles} {...getButtonProps()}>
 //       {startContent}
-//       {isLoading && spinnerPlacement === "start" && spinner}
 //       {children}
-//       {isLoading && spinnerPlacement === "end" && spinner}
 //       {endContent}
-//       {!disableRipple && <Ripple {...getRippleProps()} />}
 //     </Component>
 //   );
 // });
@@ -46,8 +37,8 @@ type nativeButtonPropsT = ComponentProps<"button">;
 type customButtonPropsT = {
 	children: React.ReactNode;
 	fontSize?: number;
-	interactive?: boolean;
-	multiline?: boolean;
+	isMultiline?: boolean;
+	isDisabled?: boolean;
 };
 
 type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
@@ -55,8 +46,8 @@ type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
 function Button({
 	children,
 	fontSize = 16,
-	interactive = false,
-	multiline = false,
+	isMultiline = false,
+	isDisabled = false,
 	...nativeButtonAttributes
 }: buttonPropsT) {
 	type ELEMENT_TYPE = HTMLButtonElement;
@@ -66,8 +57,6 @@ function Button({
 	const buttonSize = useElementProperties<ELEMENT_TYPE>(ButtonRef);
 
 	useCssVariable("--Moon-Rock_button-size", useFontSize(fontSize));
-	// useCssVariable("--Moon-Rock_button-padding-x-ratio", "1.25");
-	// useCssVariable("--Moon-Rock_button-padding-y-ratio", "0.5");
 
 	const isElementPropertiesGood = useCallback(() => {
 		// ? size
@@ -85,18 +74,28 @@ function Button({
 		}
 		// TODO : color properties
 	}, [buttonSize, fontSize]);
-	isElementPropertiesGood();
 
-	useEffect(() => {
-		// isElementPropertiesGood();
-	}, []);
+	useLayoutEffect(() => {
+		isElementPropertiesGood();
+	}, [isElementPropertiesGood]);
+	useLayoutEffect(() => {
+		if (ButtonRef.current) {
+			if (isDisabled) {
+				ButtonRef.current.inert = true;
+			} else {
+				ButtonRef.current.inert = false;
+			}
+		}
+	}, [isDisabled]);
 
 	return (
 		<button
-			className={`Moon-Rock_Button ${interactive ? "Moon-Rock_Button--interactive" : ""} ${
-				multiline ? "Moon-Rock_Button--multiline" : ""
+			className={`Moon-Rock_Button ${isMultiline ? "Moon-Rock_Button--multiline" : ""} ${
+				isDisabled ? "Moon-Rock_Button--disabled" : ""
 			}`}
 			ref={ButtonRef}
+			disabled={isDisabled}
+			aria-hidden={isDisabled}
 			{...nativeButtonAttributes}
 		>
 			{children}
@@ -118,9 +117,9 @@ export default Button;
 	-  36px high, min width 88px
 */
 
+// TODO: font size setting
+// TODO : color properties
 // TODO: Focus & hover  state
-// TODO: the defrence button type
 // // TODO: make a fun that send a warring if the size is less than 37px
 // // TODO: make a hook that use this js cool size thing to get any element size
-// TODO: when taking the button size make accept px, rem, em and if he does not paht a value make the defalt px and after all of that make the vinal value with rem
-// TODO: make the multi line subort
+// // TODO: make the multi line support

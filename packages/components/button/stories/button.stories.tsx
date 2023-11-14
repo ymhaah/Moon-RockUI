@@ -8,9 +8,10 @@ const meta: Meta<typeof Button> = {
 	component: Button,
 	args: {
 		children: "button",
+		type: "button",
 		fontSize: 16,
-		interactive: false,
-		multiline: false,
+		isDisabled: false,
+		isMultiline: false,
 	},
 	// decorators:[] use the main context
 };
@@ -23,16 +24,16 @@ export const Normal_Button: Story = {
 	},
 };
 
-export const Interactive_Button: Story = {
+export const Disabled_Button: Story = {
 	args: {
-		children: "interactive",
-		interactive: true,
+		children: "Disabled",
+		isDisabled: true,
 	},
 };
 export const Multiline_Button: Story = {
 	args: {
 		children: "this button needs more than on line",
-		multiline: true,
+		isMultiline: true,
 	},
 	decorators: [
 		(Multiline_ButtonS) => {
