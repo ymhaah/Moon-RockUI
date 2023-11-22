@@ -2,9 +2,9 @@ import { useLayoutEffect, useState } from "react";
 
 export default function useFontSize(
 	minSize: number,
-	maxSize = minSize * 1.2,
+	maxSize = minSize * 1.25,
 	minWidth = 480,
-	maxWidth = 1440,
+	maxWidth = 1280,
 ): string {
 	const [fontSize, setFontSize] = useState("");
 

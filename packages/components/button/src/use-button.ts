@@ -12,10 +12,6 @@
 //    */
 //   ref?: ReactRef<HTMLButtonElement | null>;
 //   /**
-//    * Whether the button should display a ripple effect on press.
-//    * @default false
-//    */
-//   disableRipple?: boolean;
 //   /**
 //    * The button start content.
 //    */
@@ -25,24 +21,6 @@
 //    */
 //   endContent?: ReactNode;
 //   /**
-//    * Spinner to display when loading.
-//    * @see https://nextui.org/components/spinner
-//    */
-//   spinner?: ReactNode;
-//   /**
-//    * The spinner placement.
-//    * @default "start"
-//    */
-//   spinnerPlacement?: "start" | "end";
-//   /**
-//    * Whether the button should display a loading spinner.
-//    * @default false
-//    */
-//   isLoading?: boolean;
-//   /**
-//    * The native button click event handler.
-//    * use `onPress` instead.
-//    */
 //   onClick?: MouseEventHandler<HTMLButtonElement>;
 // }
 
@@ -51,9 +29,6 @@
 //   Omit<ButtonVariantProps, "isInGroup">;
 
 // export function useButton(props: UseButtonProps) {
-//   const groupContext = useButtonGroupContext();
-//   const isInGroup = !!groupContext;
-
 //   const {
 //     ref,
 //     as,
@@ -61,19 +36,7 @@
 //     startContent: startContentProp,
 //     endContent: endContentProp,
 //     autoFocus,
-//     className,
-//     spinner,
-//     fullWidth = groupContext?.fullWidth ?? false,
-//     size = groupContext?.size ?? "md",
 //     color = groupContext?.color ?? "default",
-//     variant = groupContext?.variant ?? "solid",
-//     disableAnimation = groupContext?.disableAnimation ?? false,
-//     radius = groupContext?.radius,
-//     disableRipple = groupContext?.disableRipple ?? false,
-//     isDisabled: isDisabledProp = groupContext?.isDisabled ?? false,
-//     isIconOnly = groupContext?.isIconOnly ?? false,
-//     isLoading = false,
-//     spinnerPlacement = "start",
 //     onPress,
 //     onClick,
 //     ...otherProps
@@ -95,11 +58,6 @@
 //       button({
 //         size,
 //         color,
-//         variant,
-//         radius,
-//         fullWidth,
-//         isDisabled,
-//         isInGroup,
 //         disableAnimation,
 //         isIconOnly,
 //         className,
@@ -107,18 +65,11 @@
 //     [
 //       size,
 //       color,
-//       variant,
-//       radius,
-//       fullWidth,
-//       isDisabled,
-//       isInGroup,
 //       isIconOnly,
 //       disableAnimation,
 //       className,
 //     ],
 //   );
-
-//   const {onClick: onRippleClickHandler, onClear: onClearRipple, ripples} = useRipple();
 
 //   const handleClick = useCallback(
 //     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -187,14 +138,6 @@
 //   const startContent = getIconClone(startContentProp);
 //   const endContent = getIconClone(endContentProp);
 
-//   const spinnerSize = useMemo(() => {
-//     const buttonSpinnerSizeMap: Record<string, SpinnerProps["size"]> = {
-//       sm: "sm",
-//       md: "sm",
-//       lg: "md",
-//     };
-
-//     return buttonSpinnerSizeMap[size];
 //   }, [size]);
 
 //   const getRippleProps = useCallback<() => RippleProps>(

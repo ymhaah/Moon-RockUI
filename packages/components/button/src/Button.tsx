@@ -1,5 +1,5 @@
 // import {UseButtonProps, useButton} from "./use-button";
-import { ComponentProps, useCallback, useLayoutEffect, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 
 import "wicg-inert";
 
@@ -9,18 +9,15 @@ import useFontSize from "../../../hooks/useFontSize";
 
 import "./Button.scss";
 
+import { buttonPropsT } from "./buttonTypes.ts";
+
 // const Button = forwardRef<"button", ButtonProps>((props, ref) => {
 //   const {
-//     Component,
 //     domRef,
 //     children,
-//     styles,
 //     startContent,
 //     endContent,
-//     isLoading,
-//     disableRipple,
 //     getButtonProps,
-//     getRippleProps,
 //   } = useButton({...props, ref});
 
 //   return (
@@ -31,17 +28,6 @@ import "./Button.scss";
 //     </Component>
 //   );
 // });
-
-type nativeButtonPropsT = ComponentProps<"button">;
-
-type customButtonPropsT = {
-	children: React.ReactNode;
-	fontSize?: number;
-	isMultiline?: boolean;
-	isDisabled?: boolean;
-};
-
-type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
 
 function Button({
 	children,
@@ -56,7 +42,9 @@ function Button({
 
 	const buttonSize = useElementProperties<ELEMENT_TYPE>(ButtonRef);
 
-	useCssVariable("--Moon-Rock_button-size", useFontSize(fontSize));
+	const fontSizeClamp = useFontSize(fontSize);
+
+	useCssVariable("--Moon-Rock_button-size", fontSizeClamp);
 
 	const isElementPropertiesGood = useCallback(() => {
 		// ? size
@@ -117,9 +105,9 @@ export default Button;
 	-  36px high, min width 88px
 */
 
-// TODO: font size setting
-// TODO : color properties
+// TODO: disable Animation
+// TODO: isIconOnly
+// TODO: link with the context
+// ################# TODO LATER #################
+// TODO: color properties
 // TODO: Focus & hover  state
-// // TODO: make a fun that send a warring if the size is less than 37px
-// // TODO: make a hook that use this js cool size thing to get any element size
-// // TODO: make the multi line support
