@@ -21,6 +21,8 @@ export default function useElementProperties<elementT>(
 			Error("please only pass a react element ref");
 		}
 		setProperties((elementRef.current as HTMLElement).getBoundingClientRect());
+
+		// window.getComputedStyle(element)
 	}, [elementRef]);
 
 	return properties as propertiesT;

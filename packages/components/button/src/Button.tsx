@@ -1,15 +1,13 @@
 // import {UseButtonProps, useButton} from "./use-button";
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef, ComponentProps } from "react";
 
 import "wicg-inert";
 
 import useElementProperties from "../../../hooks/useElementProperties";
 import useCssVariable from "../../../hooks/useCssVariable.tsx";
-import useFontSize from "../../../hooks/useFontSize";
+import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
 
 import "./Button.scss";
-
-import { buttonPropsT } from "./buttonTypes.ts";
 
 // const Button = forwardRef<"button", ButtonProps>((props, ref) => {
 //   const {
@@ -29,11 +27,41 @@ import { buttonPropsT } from "./buttonTypes.ts";
 //   );
 // });
 
+type nativeButtonPropsT = ComponentProps<"button">;
+
+type customButtonPropsT = {
+	children: React.ReactNode;
+	fontSize?: number;
+	fontSizeSetting?: {
+		minFontSize: number;
+		maxFontSize: number;
+		minWidth: number;
+		maxWidth: number;
+	};
+	isMultiline?: boolean;
+	isDisabled?: boolean;
+	isIconOnly?: {
+		iconSize: string;
+		altText: string;
+	};
+	removeBiasStyles?: boolean;
+};
+
+type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
+
 function Button({
 	children,
 	fontSize = 16,
+	fontSizeSetting = {
+		minFontSize: fontSize,
+		maxFontSize: fontSize * 1.25,
+		minWidth: 480,
+		maxWidth: 1280,
+	},
 	isMultiline = false,
 	isDisabled = false,
+	isIconOnly,
+	removeBiasStyles = false,
 	...nativeButtonAttributes
 }: buttonPropsT) {
 	type ELEMENT_TYPE = HTMLButtonElement;
@@ -42,9 +70,16 @@ function Button({
 
 	const buttonSize = useElementProperties<ELEMENT_TYPE>(ButtonRef);
 
-	const fontSizeClamp = useFontSize(fontSize);
+	const fontSizeValue = useClampFontSize(
+		fontSize || fontSizeSetting.minFontSize,
+		fontSizeSetting.maxFontSize,
+		fontSizeSetting.minWidth,
+		fontSizeSetting.maxWidth,
+	);
 
-	useCssVariable("--Moon-Rock_button-size", fontSizeClamp);
+	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-font-size", fontSizeValue);
+	useCssVariable("--Moon-Rock_button-icon-size", isIconOnly?.iconSize || "0px");
+	useCssVariable("--Moon-Rock_button-background-color");
 
 	const isElementPropertiesGood = useCallback(() => {
 		// ? size
@@ -78,12 +113,13 @@ function Button({
 
 	return (
 		<button
+			aria-label={isIconOnly?.altText}
 			className={`Moon-Rock_Button ${isMultiline ? "Moon-Rock_Button--multiline" : ""} ${
 				isDisabled ? "Moon-Rock_Button--disabled" : ""
-			}`}
+			} ${removeBiasStyles ? "" : "Moon-Rock_Button--BiasStyles"}`}
 			ref={ButtonRef}
 			disabled={isDisabled}
-			aria-hidden={isDisabled}
+			aria-disabled={isDisabled}
 			{...nativeButtonAttributes}
 		>
 			{children}
@@ -91,10 +127,15 @@ function Button({
 	);
 }
 
-export default Button;
+export { Button };
+export type { buttonPropsT };
 
 // function App() {
-// 	return <Button >test</Button>;
+// 	return (
+// 		<Button>
+// 			<Button>test</Button>
+// 		</Button>
+// 	);
 // }
 
 /*
@@ -107,7 +148,12 @@ export default Button;
 
 // TODO: disable Animation
 // TODO: isIconOnly
+// TODO: Icon with text
+// TODO: color from the prop or take the background color get it with a fun
 // TODO: link with the context
+// TODO: fix the fact that you can't use more than one button with the css overwrite
+// // TODO: Remove suggested formats removeBiasStyles
+// // TODO: font Size Setting
 // ################# TODO LATER #################
 // TODO: color properties
-// TODO: Focus & hover  state
+// TODO: Focus

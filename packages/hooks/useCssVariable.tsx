@@ -1,19 +1,19 @@
 import { useLayoutEffect } from "react";
 
-export default function useCssVariable(
+export default function useCssVariable<elementT>(
 	variableName: string,
 	variableValue: string,
-	notRoot: string | null = null,
+	ROOT?: React.RefObject<elementT>,
 ) {
 	useLayoutEffect(() => {
-		if (notRoot === null) {
+		if (!ROOT) {
 			const root = document.querySelector(":root") as HTMLElement | null;
 			root?.style.setProperty(variableName, variableValue);
 		} else {
-			const root = document.querySelector(notRoot) as HTMLElement | null;
+			const root = ROOT?.current;
 			root?.style.setProperty(variableName, variableValue);
 		}
-	}, [notRoot, variableName, variableValue]);
+	}, [ROOT, variableName, variableValue]);
 }
 
 // ! pass the var name and the var value to change or create a css var

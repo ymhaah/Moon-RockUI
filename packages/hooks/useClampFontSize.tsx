@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 
-export default function useFontSize(
+export default function useClampFontSize(
 	minSize: number,
 	maxSize = minSize * 1.25,
 	minWidth = 480,
