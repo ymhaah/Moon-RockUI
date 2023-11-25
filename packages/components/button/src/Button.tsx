@@ -40,18 +40,16 @@ type customButtonPropsT = {
 	};
 	isMultiline?: boolean;
 	isDisabled?: boolean;
-	isIconOnly?: {
-		iconSize: string;
-		altText: string;
-	};
+	isIconOnly?: string;
 	removeBiasStyles?: boolean;
+	a11y?: boolean;
 };
 
 type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
 
 function Button({
 	children,
-	fontSize = 16,
+	fontSize = 14,
 	fontSizeSetting = {
 		minFontSize: fontSize,
 		maxFontSize: fontSize * 1.25,
@@ -62,6 +60,7 @@ function Button({
 	isDisabled = false,
 	isIconOnly,
 	removeBiasStyles = false,
+	a11y = false,
 	...nativeButtonAttributes
 }: buttonPropsT) {
 	type ELEMENT_TYPE = HTMLButtonElement;
@@ -77,30 +76,9 @@ function Button({
 		fontSizeSetting.maxWidth,
 	);
 
-	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-font-size", fontSizeValue);
-	useCssVariable("--Moon-Rock_button-icon-size", isIconOnly?.iconSize || "0px");
-	useCssVariable("--Moon-Rock_button-background-color");
+	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-font-size", fontSizeValue, ButtonRef);
+	// useCssVariable("--Moon-Rock_button-background-color");
 
-	const isElementPropertiesGood = useCallback(() => {
-		// ? size
-		if (buttonSize?.width < 30 || buttonSize?.height < 12) {
-			// eslint-disable-next-line no-console
-			console.warn(
-				"we recommend that the button size be at least larger than 30 px for better accessibility",
-			);
-		}
-		if (fontSize < 13) {
-			// eslint-disable-next-line no-console
-			console.warn(
-				"we recommend that the button font size be at least 14 px for better accessibility",
-			);
-		}
-		// TODO : color properties
-	}, [buttonSize, fontSize]);
-
-	useLayoutEffect(() => {
-		isElementPropertiesGood();
-	}, [isElementPropertiesGood]);
 	useLayoutEffect(() => {
 		if (ButtonRef.current) {
 			if (isDisabled) {
@@ -113,7 +91,7 @@ function Button({
 
 	return (
 		<button
-			aria-label={isIconOnly?.altText}
+			aria-label={isIconOnly}
 			className={`Moon-Rock_Button ${isMultiline ? "Moon-Rock_Button--multiline" : ""} ${
 				isDisabled ? "Moon-Rock_Button--disabled" : ""
 			} ${removeBiasStyles ? "" : "Moon-Rock_Button--BiasStyles"}`}
@@ -147,13 +125,14 @@ export type { buttonPropsT };
 */
 
 // TODO: disable Animation
-// TODO: isIconOnly
 // TODO: Icon with text
 // TODO: color from the prop or take the background color get it with a fun
-// TODO: link with the context
-// TODO: fix the fact that you can't use more than one button with the css overwrite
+// TODO: color properties
+// TODO: Focus
+// // TODO: isIconOnly
+// // TODO: fix the fact that you can't use more than one button with the css overwrite
 // // TODO: Remove suggested formats removeBiasStyles
 // // TODO: font Size Setting
 // ################# TODO LATER #################
-// TODO: color properties
-// TODO: Focus
+// TODO: link with the context
+// TODO: doc ( try to use rem & em in every thing )

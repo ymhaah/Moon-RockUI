@@ -1,7 +1,7 @@
-import Button from "./Button.tsx";
+import { Button } from "./Button.tsx";
 
 // export types
-export type * from "./buttonTypes.ts";
+import type { buttonPropsT } from "./Button.tsx";
 
 // export hooks
 // export {useButton} from "./use-button";
@@ -10,3 +10,4 @@ export type * from "./buttonTypes.ts";
 
 // export component
 export { Button };
+export type { buttonPropsT };
