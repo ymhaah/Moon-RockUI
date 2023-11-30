@@ -1,58 +1,20 @@
-// import {UseButtonProps, useButton} from "./use-button";
-import { useCallback, useLayoutEffect, useRef, ComponentProps } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import "wicg-inert";
 
-import useElementProperties from "../../../hooks/useElementProperties";
 import useCssVariable from "../../../hooks/useCssVariable.tsx";
 import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
 
+import buttonPropsT from "./buttonPropsT.ts";
+
 import "./Button.scss";
-
-// const Button = forwardRef<"button", ButtonProps>((props, ref) => {
-//   const {
-//     domRef,
-//     children,
-//     startContent,
-//     endContent,
-//     getButtonProps,
-//   } = useButton({...props, ref});
-
-//   return (
-//     <Component ref={domRef} className={styles} {...getButtonProps()}>
-//       {startContent}
-//       {children}
-//       {endContent}
-//     </Component>
-//   );
-// });
-
-type nativeButtonPropsT = ComponentProps<"button">;
-
-type customButtonPropsT = {
-	children: React.ReactNode;
-	fontSize?: number;
-	fontSizeSetting?: {
-		minFontSize: number;
-		maxFontSize: number;
-		minWidth: number;
-		maxWidth: number;
-	};
-	isMultiline?: boolean;
-	isDisabled?: boolean;
-	isIconOnly?: string;
-	removeBiasStyles?: boolean;
-	a11y?: boolean;
-};
-
-type buttonPropsT = customButtonPropsT & nativeButtonPropsT;
 
 function Button({
 	children,
-	fontSize = 14,
+	fontSize = 12,
 	fontSizeSetting = {
 		minFontSize: fontSize,
-		maxFontSize: fontSize * 1.25,
+		maxFontSize: fontSize * 1.2,
 		minWidth: 480,
 		maxWidth: 1280,
 	},
@@ -60,14 +22,18 @@ function Button({
 	isDisabled = false,
 	isIconOnly,
 	removeBiasStyles = false,
-	a11y = false,
+	colors = {
+		textColor: "",
+		backgroundColor: "",
+		primaryColor: "",
+		secondaryColor: "",
+		accentColor: "",
+	},
 	...nativeButtonAttributes
 }: buttonPropsT) {
 	type ELEMENT_TYPE = HTMLButtonElement;
 
 	const ButtonRef = useRef<ELEMENT_TYPE>(null);
-
-	const buttonSize = useElementProperties<ELEMENT_TYPE>(ButtonRef);
 
 	const fontSizeValue = useClampFontSize(
 		fontSize || fontSizeSetting.minFontSize,
@@ -77,7 +43,24 @@ function Button({
 	);
 
 	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-font-size", fontSizeValue, ButtonRef);
-	// useCssVariable("--Moon-Rock_button-background-color");
+
+	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-text-color", colors?.textColor, ButtonRef);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-background-color",
+		colors?.backgroundColor,
+		ButtonRef,
+	);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-primary-color",
+		colors?.primaryColor,
+		ButtonRef,
+	);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-secondary-color",
+		colors?.secondaryColor,
+		ButtonRef,
+	);
+	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-accent-color", colors?.accentColor, ButtonRef);
 
 	useLayoutEffect(() => {
 		if (ButtonRef.current) {
@@ -108,31 +91,16 @@ function Button({
 export { Button };
 export type { buttonPropsT };
 
-// function App() {
-// 	return (
-// 		<Button>
-// 			<Button>test</Button>
-// 		</Button>
-// 	);
-// }
-
-/*
-	? button roll:
-	- min size 30px (touch-based interactions)
-	- touch targets should be at least 48 x 48
-	- min margin 8px
-	-  36px high, min width 88px
-*/
-
 // TODO: disable Animation
-// TODO: Icon with text
-// TODO: color from the prop or take the background color get it with a fun
-// TODO: color properties
-// TODO: Focus
+// TODO: link with the context
+// TODO: context varinat thing
+// // TODO: color from the prop or take the background color get it with a fun
+// // TODO: Focus
 // // TODO: isIconOnly
 // // TODO: fix the fact that you can't use more than one button with the css overwrite
 // // TODO: Remove suggested formats removeBiasStyles
 // // TODO: font Size Setting
+// // TODO: color properties
 // ################# TODO LATER #################
-// TODO: link with the context
 // TODO: doc ( try to use rem & em in every thing )
+// TODO: doc i don't take a value with do anything with it

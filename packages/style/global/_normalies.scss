@@ -121,3 +121,33 @@ svg {
 	--accent-clr: var(--accent-X-clr);
 	--accent-shadow-clr: var(--clr-teal-blue-500);
 }
+
+@media (forced-colors: active) {
+	:root {
+		--clr-text: #000;
+		--clr-background: #fff;
+		--clr-primary: #007bff;
+		--clr-secondary: #6c757d;
+		--clr-accent: #28a745;
+	}
+}
+@media (prefers-contrast: more) {
+	:root {
+		/* Adjust the colors for higher contrast */
+		--clr-text: #000;
+		--clr-background: #fff;
+		--clr-primary: #0044cc;
+		--clr-secondary: #666666;
+		--clr-accent: #008000;
+	}
+}
+@media (prefers-contrast: less) {
+	:root {
+		/* Adjust the colors for lower contrast */
+		--clr-text: #333;
+		--clr-background: #f2f2f2;
+		--clr-primary: #0066ff;
+		--clr-secondary: #999999;
+		--clr-accent: #007f00;
+	}
+}

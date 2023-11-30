@@ -1,13 +1,6 @@
 import { Button } from "./Button.tsx";
 
-// export types
-import type { buttonPropsT } from "./Button.tsx";
+import type buttonPropsT from "./buttonPropsT.ts";
 
-// export hooks
-// export {useButton} from "./use-button";
-
-// export context
-
-// export component
 export { Button };
 export type { buttonPropsT };

@@ -1,4 +1,10 @@
 :where(button.Moon-Rock_Button) {
+	--font-size: var(--Moon-Rock_button-font-size, 1rem);
+	--text-color: var(--Moon-Rock_button-text-color);
+	--background-color: var(--Moon-Rock_button-background-color);
+	--primary-color: var(--Moon-Rock_button-primary-color);
+	--secondary-color: var(--Moon-Rock_button-secondary-color);
+	--accent-color: var(--Moon-Rock_button-accent-color);
 	width: fit-content;
 	display: inline-flex;
 	justify-content: center;
@@ -6,9 +12,9 @@
 	vertical-align: middle;
 	text-align: center;
 	white-space: nowrap;
-	font-size: var(--Moon-Rock_button-font-size, 1rem);
 	overflow: hidden;
 	appearance: button;
+	font-size: var(--font-size);
 }
 :where(button.Moon-Rock_Button--BiasStyles) {
 	max-width: min(100%, 100vw);
@@ -17,6 +23,8 @@
 	text-decoration: none;
 	text-transform: none;
 	cursor: pointer;
+	color: var(--text-color);
+	background-color: var(--background-color);
 }
 :where(button.Moon-Rock_Button--multiline) {
 	text-wrap: balance;
@@ -29,27 +37,15 @@
 		button.Moon-Rock_Button--BiasStyles:focus,
 		button.Moon-Rock_Button--BiasStyles:focus-visible
 	) {
-	outline-color: var(--Moon-Rock_button-background-color, #007bff);
+	outline-color: var(--background-color);
 	outline-style: solid;
 	outline-width: 0.2em;
 	outline-offset: 0.2em;
 }
-
 :where(button.Moon-Rock_Button--BiasStyles *) {
 	max-width: 100%;
 	max-height: 100%;
 }
-
-// .Button:has(img, svg) {
-// }
-// .Button:where(:hover, :active):not(:has(img, svg)) {
-// }
-// .Button:has(img, svg):where(:hover, :active) {
-// }
-// .Button:not(:last-child) {
-// 	margin: 0 0 1rem 0;
-// }
-
 @supports not (width: fit-content) {
 	:where(button.Moon-Rock_Button) {
 		width: auto;
@@ -60,9 +56,3 @@
 		white-space: normal;
 	}
 }
-
-// // TODO: make the multiline support
-// TODO: disable Animation
-// TODO: isIconOnly
-// TODO: link the main context with the button and make it take a style
-// // TODO: padding

@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useMemo } from "react";
+import { useState, useLayoutEffect } from "react";
 
 type sizePropsT = {
 	width: number;
@@ -14,6 +14,7 @@ type sizePropsT = {
 type colorPropsT = {
 	color: string;
 	backgroundColor: string;
+	fontSize: string;
 };
 
 type propertiesT = sizePropsT | colorPropsT;
@@ -23,24 +24,33 @@ export default function useElementProperties<elementT>(
 ): propertiesT {
 	const [properties, setProperties] = useState<propertiesT>();
 
-	const sizeProps: sizePropsT = useMemo(() => {
-		return (elementRef.current as HTMLElement).getBoundingClientRect();
-	}, [elementRef]);
-
-	const colorProps: colorPropsT = useMemo(() => {
-		return {
-			color: window.getComputedStyle(elementRef.current as HTMLElement).color,
-			backgroundColor: window.getComputedStyle(elementRef.current as HTMLElement)
-				.backgroundColor,
-		};
-	}, [elementRef]);
-
 	useLayoutEffect(() => {
 		if (!elementRef.current) {
 			Error("please only pass a react element ref");
 		}
-		setProperties({ ...sizeProps, ...colorProps });
-	}, [colorProps, elementRef, sizeProps]);
+
+		const sizeProps: sizePropsT = {
+			width: (elementRef.current as HTMLElement).getBoundingClientRect().width,
+			height: (elementRef.current as HTMLElement).getBoundingClientRect().height,
+			top: (elementRef.current as HTMLElement).getBoundingClientRect().top,
+			right: (elementRef.current as HTMLElement).getBoundingClientRect().right,
+			bottom: (elementRef.current as HTMLElement).getBoundingClientRect().bottom,
+			left: (elementRef.current as HTMLElement).getBoundingClientRect().left,
+			x: (elementRef.current as HTMLElement).getBoundingClientRect().x,
+			y: (elementRef.current as HTMLElement).getBoundingClientRect().y,
+		};
+
+		const colorProps: colorPropsT = {
+			color: window.getComputedStyle(elementRef.current as HTMLElement).color,
+			backgroundColor: window.getComputedStyle(elementRef.current as HTMLElement)
+				.backgroundColor,
+			fontSize: window.getComputedStyle(elementRef.current as HTMLElement).fontSize,
+		};
+
+		const properties: propertiesT = { ...sizeProps, ...colorProps };
+
+		setProperties(properties);
+	}, [elementRef]);
 
 	return properties as propertiesT;
 }
