@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 
-import { cssColorsT } from "../../../types/colors.ts";
+import { cssColorsT } from "./colors.ts";
 
 type nativeButtonPropsT = ComponentProps<"button">;
 
@@ -17,6 +17,7 @@ type customButtonPropsT = {
 	isDisabled?: boolean;
 	isIconOnly?: string;
 	removeBiasStyles?: boolean;
+	cssVar?: boolean;
 	colors?: {
 		textColor: cssColorsT | string;
 		backgroundColor: cssColorsT | string;

@@ -5,16 +5,16 @@ import "wicg-inert";
 import useCssVariable from "../../../hooks/useCssVariable.tsx";
 import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
 
-import buttonPropsT from "./buttonPropsT.ts";
+import buttonPropsT from "../../../types/buttonPropsT.ts";
 
 import "./Button.scss";
 
 function Button({
 	children,
-	fontSize = 12,
+	fontSize,
 	fontSizeSetting = {
-		minFontSize: fontSize,
-		maxFontSize: fontSize * 1.2,
+		minFontSize: 12,
+		maxFontSize: 12 * 1.2,
 		minWidth: 480,
 		maxWidth: 1280,
 	},
@@ -22,6 +22,7 @@ function Button({
 	isDisabled = false,
 	isIconOnly,
 	removeBiasStyles = false,
+	cssVar = false,
 	colors = {
 		textColor: "",
 		backgroundColor: "",
@@ -42,25 +43,37 @@ function Button({
 		fontSizeSetting.maxWidth,
 	);
 
-	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-font-size", fontSizeValue, ButtonRef);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-font-size",
+		fontSize ? fontSizeValue : undefined,
+		ButtonRef,
+	);
 
-	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-text-color", colors?.textColor, ButtonRef);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-text-color",
+		cssVar ? colors?.textColor : undefined,
+		ButtonRef,
+	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-background-color",
-		colors?.backgroundColor,
+		cssVar ? colors?.backgroundColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-primary-color",
-		colors?.primaryColor,
+		cssVar ? colors?.primaryColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-secondary-color",
-		colors?.secondaryColor,
+		cssVar ? colors?.secondaryColor : undefined,
 		ButtonRef,
 	);
-	useCssVariable<ELEMENT_TYPE>("--Moon-Rock_button-accent-color", colors?.accentColor, ButtonRef);
+	useCssVariable<ELEMENT_TYPE>(
+		"--Moon-Rock_button-accent-color",
+		cssVar ? colors?.accentColor : undefined,
+		ButtonRef,
+	);
 
 	useLayoutEffect(() => {
 		if (ButtonRef.current) {
@@ -77,7 +90,9 @@ function Button({
 			aria-label={isIconOnly}
 			className={`Moon-Rock_Button ${isMultiline ? "Moon-Rock_Button--multiline" : ""} ${
 				isDisabled ? "Moon-Rock_Button--disabled" : ""
-			} ${removeBiasStyles ? "" : "Moon-Rock_Button--BiasStyles"}`}
+			} ${removeBiasStyles ? "" : "Moon-Rock_Button--BiasStyles"} ${
+				cssVar ? "Moon-Rock_Button--cssVar" : ""
+			}`}
 			ref={ButtonRef}
 			disabled={isDisabled}
 			aria-disabled={isDisabled}

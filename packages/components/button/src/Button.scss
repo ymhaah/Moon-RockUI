@@ -1,10 +1,5 @@
 :where(button.Moon-Rock_Button) {
 	--font-size: var(--Moon-Rock_button-font-size, 1rem);
-	--text-color: var(--Moon-Rock_button-text-color);
-	--background-color: var(--Moon-Rock_button-background-color);
-	--primary-color: var(--Moon-Rock_button-primary-color);
-	--secondary-color: var(--Moon-Rock_button-secondary-color);
-	--accent-color: var(--Moon-Rock_button-accent-color);
 	width: fit-content;
 	display: inline-flex;
 	justify-content: center;
@@ -16,6 +11,16 @@
 	appearance: button;
 	font-size: var(--font-size);
 }
+:where(button.Moon-Rock_Button--cssVar) {
+	--text-color: var(--Moon-Rock_button-text-color);
+	--background-color: var(--Moon-Rock_button-background-color);
+	--primary-color: var(--Moon-Rock_button-primary-color);
+	--secondary-color: var(--Moon-Rock_button-secondary-color);
+	--accent-color: var(--Moon-Rock_button-accent-color);
+	color: var(--text-color);
+	background-color: var(--background-color);
+	outline-color: var(--background-color);
+}
 :where(button.Moon-Rock_Button--BiasStyles) {
 	max-width: min(100%, 100vw);
 	padding: 0.4em;
@@ -23,8 +28,6 @@
 	text-decoration: none;
 	text-transform: none;
 	cursor: pointer;
-	color: var(--text-color);
-	background-color: var(--background-color);
 }
 :where(button.Moon-Rock_Button--multiline) {
 	text-wrap: balance;
@@ -33,11 +36,7 @@
 	pointer-events: none;
 	cursor: not-allowed;
 }
-:where(
-		button.Moon-Rock_Button--BiasStyles:focus,
-		button.Moon-Rock_Button--BiasStyles:focus-visible
-	) {
-	outline-color: var(--background-color);
+:where(button.Moon-Rock_Button--BiasStyles:focus-visible) {
 	outline-style: solid;
 	outline-width: 0.2em;
 	outline-offset: 0.2em;

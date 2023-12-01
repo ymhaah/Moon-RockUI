@@ -14,7 +14,23 @@ const meta: Meta<typeof Button> = {
 		isMultiline: false,
 		removeBiasStyles: false,
 	},
-	// decorators:[] use the main context
+	decorators: [
+		(Button) => {
+			return (
+				<div
+					style={{
+						display: "flex",
+						width: "100%",
+						height: "100vh",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<Button />
+				</div>
+			);
+		},
+	],
 };
 
 type Story = StoryObj<typeof Button>;

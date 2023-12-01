@@ -6,16 +6,18 @@ type ElementWithStyle = HTMLElement & {
 
 export default function useCssVariable<elementT extends ElementWithStyle>(
 	variableName: string,
-	variableValue: string,
+	variableValue: string | undefined,
 	ROOT?: React.RefObject<elementT> | undefined,
 ) {
 	useLayoutEffect(() => {
 		const root = ROOT?.current;
-		if (ROOT) {
-			root?.style.setProperty(variableName, variableValue);
-		} else {
-			const root = document.querySelector(":root") as HTMLElement | null;
-			root?.style.setProperty(variableName, variableValue);
+		if (typeof variableValue === "string") {
+			if (ROOT) {
+				root?.style.setProperty(variableName, variableValue);
+			} else {
+				const root = document.querySelector(":root") as HTMLElement | null;
+				root?.style.setProperty(variableName, variableValue);
+			}
 		}
 	}, [ROOT, variableName, variableValue]);
 }

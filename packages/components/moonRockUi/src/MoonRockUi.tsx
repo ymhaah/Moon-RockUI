@@ -1,17 +1,29 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
+
+import buttonPropsT from "../../../types/buttonPropsT.ts";
+
+type contextT = {
+	button?: buttonPropsT;
+};
 
 type MoonRockUiProviderPropsT = {
 	children: React.ReactNode;
 };
 
-type MoonRockUiContextT = {
-	test: string;
-};
-
-const MOON_ROCK_UI = createContext<MoonRockUiContextT | undefined>(undefined);
+const MOON_ROCK_UI = createContext<contextT | undefined>(undefined);
 
 function MoonRockUi({ children }: MoonRockUiProviderPropsT) {
-	return <MOON_ROCK_UI.Provider value={undefined}>{children}</MOON_ROCK_UI.Provider>;
+	// const [CONTEXT, setContext] = useState<contextT>({button: b});
+
+	return (
+		<MOON_ROCK_UI.Provider value={undefined}>
+			<div>{children}</div>
+		</MOON_ROCK_UI.Provider>
+	);
+}
+
+function App() {
+	return <MoonRockUi>test</MoonRockUi>;
 }
 
 export default MoonRockUi;
