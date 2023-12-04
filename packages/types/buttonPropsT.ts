@@ -5,7 +5,7 @@ import { cssColorsT } from "./colors.ts";
 type nativeButtonPropsT = ComponentProps<"button">;
 
 type customButtonPropsT = {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	fontSize?: number;
 	fontSizeSetting?: {
 		minFontSize: number;

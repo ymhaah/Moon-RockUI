@@ -1,5 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { MoonRockUi } from "../../moonRockUi/src/MoonRockUi";
 import { Button } from "../src/Button.tsx";
 // import { Story } from "@storybook/react";
 
@@ -17,17 +19,19 @@ const meta: Meta<typeof Button> = {
 	decorators: [
 		(Button) => {
 			return (
-				<div
-					style={{
-						display: "flex",
-						width: "100%",
-						height: "100vh",
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
-					<Button />
-				</div>
+				<MoonRockUi defaultValues={{ button: { fontSize: 30 } }}>
+					<div
+						style={{
+							display: "flex",
+							width: "100%",
+							height: "100vh",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<Button />
+					</div>
+				</MoonRockUi>
 			);
 		},
 	],

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
 
 import buttonPropsT from "../../../types/buttonPropsT.ts";
 
@@ -6,27 +6,32 @@ type contextT = {
 	button?: buttonPropsT;
 };
 
+const moonRockContext = createContext<contextT | undefined>(undefined);
+
 type MoonRockUiProviderPropsT = {
-	children: React.ReactNode;
+	children?: React.ReactNode;
+	defaultValues?: contextT;
 };
 
-const MOON_ROCK_UI = createContext<contextT | undefined>(undefined);
+function defaultValuesReducer(state: contextT | undefined, action) {
+	return state;
+}
 
-function MoonRockUi({ children }: MoonRockUiProviderPropsT) {
-	// const [CONTEXT, setContext] = useState<contextT>({button: b});
+function MoonRockUi({ children, defaultValues = undefined }: MoonRockUiProviderPropsT) {
+	const [CONTEXT, dispatchContext] = useReducer(defaultValuesReducer, defaultValues);
 
 	return (
-		<MOON_ROCK_UI.Provider value={undefined}>
+		<moonRockContext.Provider value={CONTEXT}>
 			<div>{children}</div>
-		</MOON_ROCK_UI.Provider>
+		</moonRockContext.Provider>
 	);
 }
 
-function App() {
-	return <MoonRockUi>test</MoonRockUi>;
-}
+// function App() {
+// 	return <MoonRockUi defaultValues={{button: {fontSize: 1}}}>test</MoonRockUi>;
+// }
 
-export default MoonRockUi;
+export { MoonRockUi, moonRockContext };
 
 // TODO: the context value with a reducer + types
 // TODO: visually hidden

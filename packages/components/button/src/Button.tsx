@@ -1,6 +1,8 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useContext } from "react";
 
 import "wicg-inert";
+
+import { moonRockContext } from "../../moonRockUi/src/MoonRockUi.tsx";
 
 import useCssVariable from "../../../hooks/useCssVariable.tsx";
 import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
@@ -32,6 +34,13 @@ function Button({
 	},
 	...nativeButtonAttributes
 }: buttonPropsT) {
+	const context = useContext(moonRockContext);
+
+	if (context !== undefined || context) {
+		const buttonContext = context.button;
+		console.log("button:", buttonContext);
+	}
+
 	type ELEMENT_TYPE = HTMLButtonElement;
 
 	const ButtonRef = useRef<ELEMENT_TYPE>(null);
