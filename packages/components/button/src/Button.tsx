@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useContext } from "react";
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { useLayoutEffect, useRef, useContext, useState } from "react";
 
 import "wicg-inert";
 
@@ -11,76 +12,74 @@ import buttonPropsT from "../../../types/buttonPropsT.ts";
 
 import "./Button.scss";
 
-function Button({
-	children,
-	fontSize,
-	fontSizeSetting = {
-		minFontSize: 12,
-		maxFontSize: 12 * 1.2,
-		minWidth: 480,
-		maxWidth: 1280,
-	},
-	isMultiline = false,
-	isDisabled = false,
-	isIconOnly,
-	removeBiasStyles = false,
-	cssVar = false,
-	colors = {
-		textColor: "",
-		backgroundColor: "",
-		primaryColor: "",
-		secondaryColor: "",
-		accentColor: "",
-	},
-	...nativeButtonAttributes
-}: buttonPropsT) {
+function Button(props: buttonPropsT) {
 	const context = useContext(moonRockContext);
 
-	if (context !== undefined || context) {
-		const buttonContext = context.button;
-		console.log("button:", buttonContext);
-	}
+	const [mainValue, setMainValue] = useState(
+		context?.button !== undefined ? { ...context?.button, ...props } : props,
+	);
+
+	useLayoutEffect(() => {
+		setMainValue(context?.button !== undefined ? { ...context?.button, ...props } : props);
+	}, [context?.button, props]);
+
+	const {
+		children,
+		fontSize,
+		fontSizeSetting,
+		isMultiline,
+		isDisabled,
+		isIconOnly,
+		removeBiasStyles,
+		cssVar,
+		colors,
+		...nativeButtonAttributes
+	} = mainValue;
 
 	type ELEMENT_TYPE = HTMLButtonElement;
 
 	const ButtonRef = useRef<ELEMENT_TYPE>(null);
 
 	const fontSizeValue = useClampFontSize(
-		fontSize || fontSizeSetting.minFontSize,
-		fontSizeSetting.maxFontSize,
-		fontSizeSetting.minWidth,
-		fontSizeSetting.maxWidth,
+		fontSizeSetting
+			? (fontSizeSetting.minFontSize,
+			  fontSizeSetting.maxFontSize,
+			  fontSizeSetting.minWidth,
+			  fontSizeSetting.maxWidth)
+			: fontSize
+			? fontSize
+			: 12,
 	);
 
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-font-size",
-		fontSize ? fontSizeValue : undefined,
+		fontSizeValue ? fontSizeValue : undefined,
 		ButtonRef,
 	);
 
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-text-color",
-		cssVar ? colors?.textColor : undefined,
+		cssVar && colors ? colors.textColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-background-color",
-		cssVar ? colors?.backgroundColor : undefined,
+		cssVar && colors ? colors.backgroundColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-primary-color",
-		cssVar ? colors?.primaryColor : undefined,
+		cssVar && colors ? colors.primaryColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-secondary-color",
-		cssVar ? colors?.secondaryColor : undefined,
+		cssVar && colors ? colors.secondaryColor : undefined,
 		ButtonRef,
 	);
 	useCssVariable<ELEMENT_TYPE>(
 		"--Moon-Rock_button-accent-color",
-		cssVar ? colors?.accentColor : undefined,
+		cssVar && colors ? colors.accentColor : undefined,
 		ButtonRef,
 	);
 
@@ -112,19 +111,8 @@ function Button({
 	);
 }
 
-export { Button };
-export type { buttonPropsT };
+export default Button;
 
-// TODO: disable Animation
-// TODO: link with the context
-// TODO: context varinat thing
-// // TODO: color from the prop or take the background color get it with a fun
-// // TODO: Focus
-// // TODO: isIconOnly
-// // TODO: fix the fact that you can't use more than one button with the css overwrite
-// // TODO: Remove suggested formats removeBiasStyles
-// // TODO: font Size Setting
-// // TODO: color properties
 // ################# TODO LATER #################
 // TODO: doc ( try to use rem & em in every thing )
 // TODO: doc i don't take a value with do anything with it

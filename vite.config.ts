@@ -15,19 +15,18 @@ export default defineConfig({
 
 	build: {
 		outDir: "dist",
-		minify: false,
 		manifest: true,
 		lib: {
 			entry: resolve(__dirname, "packages/index.ts"),
 			name: "moon-rockUi",
 		},
 		rollupOptions: {
-			external: ["react", "react-dom", "react/jsx-runtime", "react-aria"],
+			external: ["react", "react-dom", "react/jsx-runtime", "wicg-inert"],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
-					"react-aria": "react-aria",
+					"wicg-inert": "wicg-inert",
 				},
 				entryFileNames: "[name].js",
 				chunkFileNames: "[name].js",

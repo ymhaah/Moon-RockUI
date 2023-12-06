@@ -19,11 +19,11 @@ type customButtonPropsT = {
 	removeBiasStyles?: boolean;
 	cssVar?: boolean;
 	colors?: {
-		textColor: cssColorsT | string;
-		backgroundColor: cssColorsT | string;
-		primaryColor: cssColorsT | string;
-		secondaryColor: cssColorsT | string;
-		accentColor: cssColorsT | string;
+		textColor?: cssColorsT | string;
+		backgroundColor?: cssColorsT | string;
+		primaryColor?: cssColorsT | string;
+		secondaryColor?: cssColorsT | string;
+		accentColor?: cssColorsT | string;
 	};
 };
 

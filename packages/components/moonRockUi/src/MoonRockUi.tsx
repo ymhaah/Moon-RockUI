@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 import buttonPropsT from "../../../types/buttonPropsT.ts";
 
@@ -13,12 +13,30 @@ type MoonRockUiProviderPropsT = {
 	defaultValues?: contextT;
 };
 
-function defaultValuesReducer(state: contextT | undefined, action) {
+function defaultValuesReducer(state: contextT | undefined) {
 	return state;
 }
 
-function MoonRockUi({ children, defaultValues = undefined }: MoonRockUiProviderPropsT) {
-	const [CONTEXT, dispatchContext] = useReducer(defaultValuesReducer, defaultValues);
+function MoonRockUi({
+	children,
+	defaultValues = {
+		button: {
+			isIconOnly: undefined,
+			fontSize: 12,
+			fontSizeSetting: {
+				minFontSize: 12,
+				maxFontSize: 12 * 1.2,
+				minWidth: 480,
+				maxWidth: 1280,
+			},
+			isMultiline: false,
+			isDisabled: false,
+			removeBiasStyles: false,
+			cssVar: false,
+		},
+	},
+}: MoonRockUiProviderPropsT) {
+	const [CONTEXT] = useReducer(defaultValuesReducer, defaultValues);
 
 	return (
 		<moonRockContext.Provider value={CONTEXT}>

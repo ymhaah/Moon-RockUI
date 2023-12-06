@@ -6,6 +6,7 @@
 *.njsproj
 *.sln
 *.sw?
+storybook-static
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,node,visualstudiocode,storybookjs,react,git,sass
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,node,visualstudiocode,storybookjs,react,git,sass

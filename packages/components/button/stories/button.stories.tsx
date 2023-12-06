@@ -1,12 +1,10 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { MoonRockUi } from "../../moonRockUi/src/MoonRockUi";
-import { Button } from "../src/Button.tsx";
-// import { Story } from "@storybook/react";
+import Button from "../src/Button.tsx";
 
 const meta: Meta<typeof Button> = {
-	title: "button",
+	title: "Button",
 	component: Button,
 	args: {
 		children: "button",
@@ -15,11 +13,19 @@ const meta: Meta<typeof Button> = {
 		isDisabled: false,
 		isMultiline: false,
 		removeBiasStyles: false,
+		cssVar: false,
+		isIconOnly: "button",
 	},
 	decorators: [
 		(Button) => {
 			return (
-				<MoonRockUi defaultValues={{ button: { fontSize: 30 } }}>
+				<MoonRockUi
+					defaultValues={{
+						button: {
+							// fontSize: 60,
+						},
+					}}
+				>
 					<div
 						style={{
 							display: "flex",
@@ -41,7 +47,7 @@ type Story = StoryObj<typeof Button>;
 
 export const Normal_Button: Story = {
 	args: {
-		children: "normal",
+		children: "Button",
 	},
 };
 
@@ -63,11 +69,32 @@ export const Grouped_Buttons: Story = {
 	decorators: [
 		(Grouped_Buttons) => {
 			return (
-				<div style={{ display: "flex", gap: "1rem" }}>
-					<Grouped_Buttons />
-					<Grouped_Buttons />
-					<Grouped_Buttons />
-				</div>
+				<>
+					<div
+						style={{
+							display: "flex",
+							gap: "1rem",
+							flexDirection: "row",
+							margin: "3rem",
+						}}
+					>
+						<Grouped_Buttons />
+						<Grouped_Buttons />
+						<Grouped_Buttons />
+					</div>
+					<div
+						style={{
+							display: "flex",
+							gap: "1rem",
+							flexDirection: "column",
+							margin: "3rem",
+						}}
+					>
+						<Grouped_Buttons />
+						<Grouped_Buttons />
+						<Grouped_Buttons />
+					</div>
+				</>
 			);
 		},
 	],
@@ -104,5 +131,3 @@ export const Non_bias_Button: Story = {
 };
 
 export default meta;
-
-// TODO: fontSizeSetting story setting
