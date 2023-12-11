@@ -33,14 +33,7 @@ jobs:
             - name: Build project
               run: pnpm run build
 
-            - name: Check for changes
-              id: changes
-              run: |
-                  echo "::set-output name=changes::$(git diff --name-only ${{ github.sha }} ${{ github.sha }}^)"
-              shell: bash
-
             - name: Publish on npm
-              if: steps.changes.outputs.changes != ''
               run: pnpm publish
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
