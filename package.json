@@ -5,7 +5,7 @@
 		"@ymhaah:registry": "https://npm.pkg.github.com",
 		"access": "public"
 	},
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"license": "MIT",
 	"author": {
 		"name": "Youssef Hefnawy",
