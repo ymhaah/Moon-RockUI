@@ -1,6 +1,8 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useLayoutEffect, useRef, useContext, useState } from "react";
 
+import "./Button.css";
+
 import "wicg-inert";
 
 import { moonRockContext } from "../../moonRockUi/src/MoonRockUi.tsx";
@@ -9,8 +11,6 @@ import useCssVariable from "../../../hooks/useCssVariable.tsx";
 import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
 
 import buttonPropsT from "../../../types/buttonPropsT.ts";
-
-import "./Button.css";
 
 function Button(props: buttonPropsT) {
 	const context = useContext(moonRockContext);

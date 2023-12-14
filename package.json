@@ -5,7 +5,7 @@
 		"@ymhaah:registry": "https://npm.pkg.github.com",
 		"access": "public"
 	},
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"license": "MIT",
 	"author": {
 		"name": "Youssef Hefnawy",
@@ -29,28 +29,10 @@
 		"react",
 		"component",
 		"button",
-		"image",
-		"text",
-		"loader",
-		"popover",
-		"modal",
-		"tooltip",
-		"library",
 		"Moon Rock UI",
 		"moon",
 		"rock",
-		"ui",
-		"design",
-		"development",
-		"frontend",
-		"web",
-		"user interface",
-		"accessibility",
-		"performance",
-		"responsive",
-		"mobile",
-		"desktop",
-		"open source"
+		"accessibility"
 	],
 	"description": "Unstilled, Accessible, Variable-Based, React TS UI Components.",
 	"pnpm": {
