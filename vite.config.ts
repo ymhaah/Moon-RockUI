@@ -16,6 +16,7 @@ export default defineConfig({
 	build: {
 		outDir: "dist",
 		manifest: true,
+		minify: false,
 		lib: {
 			entry: resolve(__dirname, "packages/index.ts"),
 			name: "moon-rockUi",

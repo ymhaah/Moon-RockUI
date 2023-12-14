@@ -10,7 +10,7 @@ import useClampFontSize from "../../../hooks/useClampFontSize.tsx";
 
 import buttonPropsT from "../../../types/buttonPropsT.ts";
 
-import "./Button.scss";
+import "./Button.css";
 
 function Button(props: buttonPropsT) {
 	const context = useContext(moonRockContext);
